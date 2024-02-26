@@ -5,9 +5,10 @@ export class Fixture<T> {
     return new Fixture(data);
   }
 
-  public map<T>(...fns: (Set<T>)[]): Fixture<T> {
-    return fns.reduce((acc, fn) => Fixture.of(fn(acc.data)), this as any);
+  public map(...fns: (Set<T>)[]): Fixture<T> {
+    return fns.reduce((acc, fn) => Fixture.of(fn(acc.data)), this as Fixture<T>);
   }
+
   public value(): T {
     return this.data;
   }
